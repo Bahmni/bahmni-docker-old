@@ -16,7 +16,7 @@ web:
   - mysql
   - pgsql
  environment:
-  - NO_ERP="true"
+  - NO_ERP=true
  volumes:
   - ~/dock/openmrs-distro-bahmni/distro/target/distro:/root/.OpenMRS/modules
   - ~/dock/jss-config/openmrs/obscalculator:/root/.OpenMRS/obscalculator

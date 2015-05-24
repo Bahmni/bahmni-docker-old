@@ -15,8 +15,8 @@ web:
  links:
   - mysql
  environment:
-  - NO_ERP="true"
-  - NO_ELIS="true"
+  - NO_ERP=true
+  - NO_ELIS=true
  volumes:
   - ~/dock/openmrs-distro-bahmni/distro/target/distro:/root/.OpenMRS/modules
   - ~/dock/jss-config/openmrs/obscalculator:/root/.OpenMRS/obscalculator

@@ -17,7 +17,7 @@ web:
   - pgsql
   - openerp
  environment:
-  - NO_ELIS="true"  
+  - NO_ELIS=true
  volumes:
   - ~/dock/openmrs-distro-bahmni/distro/target/distro:/root/.OpenMRS/modules
   - ~/dock/jss-config/openmrs/obscalculator:/root/.OpenMRS/obscalculator

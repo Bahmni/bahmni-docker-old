@@ -1,9 +1,9 @@
 apache:
- image: bharatak/bahmni-apache
+ image: bahmni/apache
  ports:
   - "443:443"
 web:
- image: bharatak/bahmni-web
+ image: bahmni/web
  ports:
   - "8080:8080"
  environment:
@@ -14,18 +14,18 @@ web:
  expose:
   - "8080"
 mysql:
- image: bharatak/bahmni-mysql
+ image: bahmni/mysql
  environment: 
   - STARTUP_SQL=/tmp/mysql_backup.sql
  ports:
   - "3306:3306"
  mem_limit: 2000m
 pgsql:
- image: bharatak/bahmni-pgsql
+ image: bahmni/pgsql
  ports:
   - "5432:5432"  
 openerp:
- image: bharatak/bahmni-erp
+ image: bahmni/erp
  ports:
   - "8069:8069"
  environment:

@@ -1,0 +1,31 @@
+apache:
+ extends:
+    file: ../common.yml
+    service: apache
+ links:
+  - web   
+ volumes:
+  - ~/dock/jss-config:/var/www/bahmni_config
+  - ~/dock/openmrs-module-bahmniapps/ui/app:/var/www/bahmniapps
+web:
+ extends:
+    file: ../common.yml
+    service: web
+ mem_limit: 2000m
+ links:
+  - mysql
+ environment:
+  - NO_ERP="true"
+  - NO_ELIS="true"
+ volumes:
+  - ~/dock/openmrs-distro-bahmni/distro/target/distro:/root/.OpenMRS/modules
+  - ~/dock/jss-config/openmrs/obscalculator:/root/.OpenMRS/obscalculator
+mysql:
+ extends:
+    file: ../common.yml
+    service: mysql
+# Can use the below environment variable to restore a backup
+# environment:
+#  - STARTUP_SQL=/backup/mysql_backup_20150331_204626.sql
+ volumes:
+  - ~/dock/mysql:/backup

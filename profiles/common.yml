@@ -1,0 +1,33 @@
+apache:
+ image: bharatak/bahmni-apache
+ ports:
+  - "443:443"
+web:
+ image: bharatak/bahmni-web
+ ports:
+  - "8080:8080"
+ environment:
+  - OPENMRS_RUNTIME_PROPERTIES_FILE=/root/.OpenMRS/openmrs-runtime.properties
+  - MYSQL=mysql
+  - PGSQL=pgsql
+  - OPENERP=openerp
+ expose:
+  - "8080"
+mysql:
+ image: bharatak/bahmni-mysql
+ environment: 
+  - STARTUP_SQL=/tmp/mysql_backup.sql
+ ports:
+  - "3306:3306"
+ mem_limit: 2000m
+pgsql:
+ image: bharatak/bahmni-pgsql
+ ports:
+  - "5432:5432"  
+openerp:
+ image: bharatak/bahmni-erp
+ ports:
+  - "8069:8069"
+ environment:
+  - DB_HOST=pgsql
+  - DB_USER=openerp

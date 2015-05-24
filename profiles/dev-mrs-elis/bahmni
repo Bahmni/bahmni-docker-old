@@ -1,0 +1,27 @@
+#!/bin/bash
+set -e
+
+case "$1" in
+	"install" )
+		echo -e "Setting up for the first time"
+		docker-compose up -d mysql
+		echo -e "Waiting for mysql and pgsql to startup"
+		sleep 30
+		echo -e "Starting other containers now"
+		docker-compose up -d --no-recreate
+		;;
+	"start" )
+		echo -e "Starting the containers"
+		docker-compose start
+		;;
+	"stop" )
+		echo -e "Stopping the containers"
+		docker-compose stop
+		;;
+	"clean" )
+		docker-compose rm -v --force
+		;;
+	* )
+		echo -e "Invalid option $1"
+		;;
+esac

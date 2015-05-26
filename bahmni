@@ -1,0 +1,40 @@
+#!/bin/bash
+set -e
+
+if [ -z "$PROFILE" ]; then
+    echo "Need to set PROFILE.  The possible values are all,mrs,mrs-elis,mrs-erp,prod"
+    exit 1
+fi  
+export COMPOSE=$PWD/profiles/${PROFILE}.yml
+
+case "$1" in
+	"install" )
+		echo -e "Setting up for the first time"
+		docker-compose -f $COMPOSE up -d mysql pgsql 
+		echo -e "Waiting for mysql and pgsql to startup"
+		sleep 30
+		echo -e "Starting other containers now"
+		docker-compose -f $COMPOSE up -d --no-recreate 
+		;;
+	"start" )
+		echo -e "Starting the containers"
+		docker-compose -f $COMPOSE start
+		;;
+	"stop" )
+		echo -e "Stopping the containers"
+		docker-compose -f $COMPOSE stop
+		;;
+	"status" )
+		docker-compose -f $COMPOSE ps
+		;;
+	"restart" )
+		echo -e "Restarting..."
+		docker-compose -f $COMPOSE restart
+		;;				
+	"clean" )
+		docker-compose -f $COMPOSE rm -v --force
+		;;
+	* )
+		echo -e "Invalid option $1"
+		;;
+esac

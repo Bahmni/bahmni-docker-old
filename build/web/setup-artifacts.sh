@@ -5,11 +5,12 @@ GO_USER=guest
 GO_PWD=p@ssw0rd
 BASE_URL="https://ci-bahmni.thoughtworks.com"
 BRANCH=master
+BAHMNI_VERSION=0.74
 ARTIFACTS_PIPELINE_VERSION="Latest"
 CONFIG_PIPELINE_VERSION="Latest"
 WGET="wget --no-check-certificate --user=$GO_USER --password=$GO_PWD --auth-no-challenge"
 ERP_URL=$BASE_URL/go/files/OpenERP_$BRANCH/$ARTIFACTS_PIPELINE_VERSION/runFunctionalTestsStage/Latest/runFunctionalTestsJob/deployables/openerp-modules.zip
-BAHMNI_DISTRO_URL=$BASE_URL/go/files/Bahmni_MRS_$BRANCH/$ARTIFACTS_PIPELINE_VERSION/BuildDistroStage/Latest/BahmniDistro/openmrs-distro-bahmni-artifacts/distro-5.6-SNAPSHOT-distro.zip
+BAHMNI_DISTRO_URL=$BASE_URL/go/files/Bahmni_MRS_$BRANCH/$ARTIFACTS_PIPELINE_VERSION/BuildDistroStage/Latest/BahmniDistro/openmrs-distro-bahmni-artifacts/distro-$BAHMNI_VERSION-SNAPSHOT-distro.zip
 ELIS_URL=$BASE_URL/go/files/OpenElis_$BRANCH/$ARTIFACTS_PIPELINE_VERSION/Build/Latest/build/deployables/openelis.war
 JSS_CONFIG_URL=$BASE_URL/go/files/Build_jss_config_$BRANCH/$ARTIFACTS_PIPELINE_VERSION/BuildStage/Latest/Build/jss_config.zip
 BAHNMI_APPS_URL=$BASE_URL/go/files/Bahmni_MRS_$BRANCH/$ARTIFACTS_PIPELINE_VERSION/BuildStage/Latest/BahmniApps/bahmniapps.zip
@@ -36,7 +37,7 @@ function setup_mrs(){
 	$WGET $BAHMNI_DISTRO_URL -O /tmp/distro.zip
 	mkdir -p /root/.OpenMRS/modules
 	unzip -o -q /tmp/distro.zip -d /tmp/
-	cp -r /tmp/distro-5.6-SNAPSHOT/* /root/.OpenMRS/modules
+	cp -r /tmp/distro-$BAHMNI_VERSION-SNAPSHOT/* /root/.OpenMRS/modules
 	cp /root/.OpenMRS/modules/openmrs-webapp-*.war /var/lib/tomcat7/webapps/openmrs.war
  	rm -f /tmp/distro.zip
  	rm -rf /tmp/distro-5.6-SNAPSHOT

@@ -3,9 +3,10 @@ apache:
  ports:
   - "443:443"
 web:
- image: bahmni/web
+ image: web
  ports:
   - "8080:8080"
+  - "8000:8000"
  environment:
   - OPENMRS_RUNTIME_PROPERTIES_FILE=/root/.OpenMRS/openmrs-runtime.properties
   - MYSQL=mysql
@@ -13,6 +14,7 @@ web:
   - OPENERP=openerp
  expose:
   - "8080"
+  - "8000"
 mysql:
  image: bahmni/mysql
  environment: 

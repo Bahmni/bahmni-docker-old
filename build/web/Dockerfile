@@ -37,4 +37,6 @@ VOLUME [ "/root/.OpenMRS/obscalculator" ]
 
 EXPOSE 8080
 
+EXPOSE 8000
+
 ENTRYPOINT [ "/root/.OpenMRS/setupDbAndStart.sh" ]

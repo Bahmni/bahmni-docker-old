@@ -18,4 +18,4 @@ if [ "$NO_ERP" == "true" ]; then
     rm -f /var/lib/tomcat7/webapps/openerp-atomfeed-service.war
 fi
 
-exec /usr/share/tomcat7/bin/catalina.sh run
+exec /usr/share/tomcat7/bin/catalina.sh jpda run

@@ -1,0 +1,23 @@
+apache:
+ extends:
+    file: ../common.yml
+    service: apache
+ links:
+  - web   
+web:
+ extends:
+    file: ../common.yml
+    service: web
+ mem_limit: 2000m
+ links:
+  - mysql
+ environment:
+  - NO_ERP=true
+  - NO_ELIS=true
+mysql:
+ extends:
+    file: ../common.yml
+    service: mysql
+# Can use the below environment variable to restore a backup
+# environment:
+#  - STARTUP_SQL=/backup/mysql_backup_20150331_204626.sql

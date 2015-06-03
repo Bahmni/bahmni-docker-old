@@ -3,7 +3,7 @@ apache:
  ports:
   - "443:443"
 web:
- image: web
+ image: bahmni/web
  ports:
   - "8080:8080"
   - "8000:8000"

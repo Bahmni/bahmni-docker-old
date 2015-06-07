@@ -1,16 +1,24 @@
 #!/bin/bash
 set -e
 
-if [ -z "$PROFILE" ]; then
-    echo "Need to set PROFILE.  The possible values are all,mrs,mrs-elis,mrs-erp,prod"
+if [ -z "$BAHMNI_PROFILE" ]; then
+    echo "Need to set BAHMNI_PROFILE.  The possible values are all,mrs,mrs-elis,mrs-erp,prod"
     exit 1
-fi  
-export COMPOSE=$PWD/profiles/${PROFILE}.yml
+fi
+export COMPOSE=$PWD/profiles/${BAHMNI_PROFILE}.yml
+
+function start_pgsql(){
+	if [[ "$BAHMNI_PROFILE" == "mrs-erp" || "$BAHMNI_PROFILE" == "mrs-elis" || "$BAHMNI_PROFILE" == "prod" ]]; then 
+		echo "Starting pgsql"
+		docker-compose -f $COMPOSE up -d pgsql
+	fi
+}
 
 case "$1" in
 	"install" )
-		echo -e "Setting up for the first time"
-		docker-compose -f $COMPOSE up -d mysql pgsql
+		echo -e "Setting up for the first time.  Starting mysql ..."
+		docker-compose -f $COMPOSE up -d mysql
+		start_pgsql
 		echo -e "Waiting for databases to startup"
 		sleep 30
 		echo -e "Starting other containers now"

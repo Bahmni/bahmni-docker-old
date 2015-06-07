@@ -5,8 +5,8 @@ apache:
  links:
   - web   
  volumes:
-  - ~/dock/jss-config:/var/www/bahmni_config
-  - ~/dock/openmrs-module-bahmniapps/ui/app:/var/www/bahmniapps
+  - ~/bahmni-code/default-config:/var/www/bahmni_config
+  - ~/bahmni-code/openmrs-module-bahmniapps/ui/app:/var/www/bahmniapps
 web:
  extends:
     file: ../common.yml
@@ -17,8 +17,8 @@ web:
   - pgsql
   - openerp
  volumes:
-  - ~/dock/openmrs-distro-bahmni/distro/target/distro:/root/.OpenMRS/modules
-  - ~/dock/jss-config/openmrs/obscalculator:/root/.OpenMRS/obscalculator
+  - ~/bahmni-code/openmrs-distro-bahmni/distro/target/distro:/root/.OpenMRS/modules
+  - ~/bahmni-code/default-config/openmrs/obscalculator:/root/.OpenMRS/obscalculator
 mysql:
  extends:
     file: ../common.yml
@@ -27,7 +27,7 @@ mysql:
 # environment:
 #  - STARTUP_SQL=/backup/mysql_backup_20150331_204626.sql
  volumes:
-  - ~/dock/mysql:/backup
+  - ~/bahmni-code/mysql:/backup
 pgsql:
  extends:
     file: ../common.yml

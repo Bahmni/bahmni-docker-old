@@ -12,6 +12,7 @@ web:
   - MYSQL=mysql
   - PGSQL=pgsql
   - OPENERP=openerp
+  - DOCKERHOST=192.168.59.103
  expose:
   - "8080"
   - "8000"

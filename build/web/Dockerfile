@@ -35,6 +35,8 @@ VOLUME [ "/root/.OpenMRS/modules" ]
 
 VOLUME [ "/root/.OpenMRS/obscalculator" ]
 
+VOLUME [ "/root/.OpenMRS/encounterModifier" ]
+
 EXPOSE 8080
 
 EXPOSE 8000

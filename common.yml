@@ -22,7 +22,7 @@ mysql:
   - STARTUP_SQL=/tmp/mysql_backup.sql
  ports:
   - "3306:3306"
- mem_limit: 2000m
+ mem_limit: 4000m
 pgsql:
  image: bahmni/pgsql
  ports:

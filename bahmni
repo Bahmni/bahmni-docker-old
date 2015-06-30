@@ -2,8 +2,8 @@
 set -e
 
 if [ -z "$BAHMNI_PROFILE" ]; then
-    echo "Need to set BAHMNI_PROFILE.  The possible values are all,mrs,mrs-elis,mrs-erp,prod"
-    exit 1
+	export BAHMNI_PROFILE=mrs
+    echo "BAHMNI_PROFILE not set, using 'mrs' as default option.  The possible values are all,mrs,mrs-elis,mrs-erp,mrs-demo,prod"
 fi
 export COMPOSE=$PWD/profiles/${BAHMNI_PROFILE}.yml
 

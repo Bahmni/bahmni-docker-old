@@ -33,4 +33,6 @@ VOLUME [ "/var/www/bahmni_config" ]
 
 VOLUME [ "/var/www/bahmniapps" ]
 
-ENTRYPOINT [ "/usr/sbin/httpd","-k","start", "-D", "FOREGROUND" ]
+COPY httpd-foreground /usr/local/bin/
+
+CMD ["httpd-foreground"]

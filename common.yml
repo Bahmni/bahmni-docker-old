@@ -1,9 +1,11 @@
 apache:
  image: bahmni/apache
+ hostname: apache
  ports:
   - "443:443"
 web:
  image: bahmni/web
+ hostname: web
  ports:
   - "8080:8080"
   - "8000:8000"
@@ -12,22 +14,25 @@ web:
   - MYSQL=mysql
   - PGSQL=pgsql
   - OPENERP=openerp
-  - DOCKERHOST=192.168.59.103
+  - DOCKERHOST=web
  expose:
   - "8080"
   - "8000"
 mysql:
  image: bahmni/mysql
+ hostname: mysql
  environment: 
   - STARTUP_SQL=/tmp/mysql_backup.sql
  ports:
   - "3306:3306"
 pgsql:
  image: bahmni/pgsql
+ hostname: pgsql
  ports:
   - "5432:5432"  
 openerp:
  image: bahmni/erp
+ hostname: openerp
  ports:
   - "8069:8069"
  environment:

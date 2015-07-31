@@ -1,12 +1,12 @@
 apache:
  extends:
-    file: common.yml
+    file: ../common.yml
     service: apache
  links:
   - web   
 web:
  extends:
-    file: common.yml
+    file: ../common.yml
     service: web
  mem_limit: 2000m
  links:
@@ -14,15 +14,15 @@ web:
   - pgsql 
 mysql:
  extends:
-    file: common.yml
+    file: ../common.yml
     service: mysql
 pgsql:
  extends:
-    file: common.yml
+    file: ../common.yml
     service: pgsql
 openerp:
  extends:
-    file: common.yml
+    file: ../common.yml
     service: openerp
  links:
   - pgsql    

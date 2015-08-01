@@ -31,4 +31,4 @@ VOLUME [ "/opt/openerp-7.0-20130301-002301" ]
 
 USER openerp
 
-CMD [ "sh", "-c" ,"openerp-server --without-demo all --db_user ${DB_USER} --db_host ${DB_HOST}" ]
+CMD [ "sh", "-c" ,"openerp-server --update all --without-demo all --db_user ${DB_USER} --db_host ${DB_HOST}" ]

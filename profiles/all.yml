@@ -32,6 +32,8 @@ pgsql:
  extends:
     file: ../common.yml
     service: pgsql
+ volumes:
+  - ~/bahmni-code/pgsql:/backup 
 openerp:
  extends:
     file: ../common.yml

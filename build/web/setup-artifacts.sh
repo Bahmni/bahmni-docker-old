@@ -4,7 +4,7 @@ set -e
 GO_USER=guest
 GO_PWD=p@ssw0rd
 BASE_URL="https://ci-bahmni.thoughtworks.com"
-BRANCH=master
+BRANCH=Released
 BAHMNI_VERSION=0.74
 ARTIFACTS_PIPELINE_VERSION="Latest"
 CONFIG_PIPELINE_VERSION="Latest"
@@ -15,6 +15,7 @@ ELIS_URL=$BASE_URL/go/files/OpenElis_$BRANCH/$ARTIFACTS_PIPELINE_VERSION/Build/L
 JSS_CONFIG_URL=$BASE_URL/go/files/Build_jss_config_$BRANCH/$ARTIFACTS_PIPELINE_VERSION/BuildStage/Latest/Build/jss_config.zip
 BAHNMI_APPS_URL=$BASE_URL/go/files/Bahmni_MRS_$BRANCH/$ARTIFACTS_PIPELINE_VERSION/BuildStage/Latest/BahmniApps/bahmniapps.zip
 BAHMNI_ERP_ATOMFEED_SERVICE=$BASE_URL/go/files/OpenERP_$BRANCH/$ARTIFACTS_PIPELINE_VERSION/runFunctionalTestsStage/Latest/openerp-atomfeed-service/openerp-atomfeed-service.war
+BAHMNI_REPORTS_URL=$BASE_URL/go/files/Bahmni_Reports_$BRANCH/$ARTIFACTS_PIPELINE_VERSION/BuildStage/Latest/Build-Bahmni-Reports/deployables/bahmnireports.war
 
 function setup_erp(){
 	$WGET $ERP_URL -O /tmp/openerp-modules.zip
@@ -31,6 +32,7 @@ function setup_web(){
 	setup_mrs
 	setup_elis
 	setup_openerp_atomfeed
+	setup_reports
 }
 
 function setup_mrs(){
@@ -41,6 +43,9 @@ function setup_mrs(){
 	cp /root/.OpenMRS/modules/openmrs-webapp-*.war /var/lib/tomcat7/webapps/openmrs.war
  	rm -f /tmp/distro.zip
  	rm -rf /tmp/distro-5.6-SNAPSHOT
+}
+function setup_reports(){
+	$WGET $BAHMNI_REPORTS_URL -O /var/lib/tomcat7/webapps/bahmnireports.war
 }
 
 function setup_elis(){
@@ -55,11 +60,11 @@ function setup_openerp_atomfeed(){
 
 function setup_apache(){
 	$WGET $JSS_CONFIG_URL -O /tmp/jss_config.zip
-	unzip -o -q /tmp/jss_config.zip -d /var/www/html/bahmni_config
+	unzip -o -q /tmp/jss_config.zip -d /var/www/bahmni_config
 	rm -f /tmp/jss_config.zip
 
 	$WGET $BAHNMI_APPS_URL -O /tmp/bahmniapps.zip
-	unzip -o -q /tmp/bahmniapps.zip -d /var/www/html/bahmniapps
+	unzip -o -q /tmp/bahmniapps.zip -d /var/www/bahmniapps
 	rm -f /tmp/bahmniapps.zip
 }
 

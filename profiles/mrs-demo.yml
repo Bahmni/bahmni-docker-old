@@ -1,0 +1,20 @@
+apache:
+ extends:
+    file: ../common.yml
+    service: apache
+ links:
+  - web   
+web:
+ extends:
+    file: ../common.yml
+    service: web
+ mem_limit: 2000m
+ links:
+  - mysql
+ environment:
+  - NO_ERP=true
+  - NO_ELIS=true  
+mysql:
+ extends:
+    file: ../common.yml
+    service: mysql

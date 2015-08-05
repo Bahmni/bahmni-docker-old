@@ -8,7 +8,7 @@ fi
 export COMPOSE=$PWD/profiles/${BAHMNI_PROFILE}.yml
 
 function start_pgsql(){
-	if [[ "$BAHMNI_PROFILE" == "mrs-erp" || "$BAHMNI_PROFILE" == "mrs-elis" || "$BAHMNI_PROFILE" == "prod" ]]; then 
+	if [[ "$BAHMNI_PROFILE" == "mrs-erp" || "$BAHMNI_PROFILE" == "mrs-elis" || "$BAHMNI_PROFILE" == "prod" || "$BAHMNI_PROFILE" == "all" ]]; then 
 		echo "Starting pgsql"
 		docker-compose -f $COMPOSE up -d pgsql
 	fi

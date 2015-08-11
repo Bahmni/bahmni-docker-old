@@ -45,6 +45,9 @@ case "$1" in
 	"logs" )
 		docker logs -f $(docker ps | tr ' ' '\n' | grep "profiles_$2")
 		;;
+	"process" )
+		docker ps
+		;;
 	* )
 		echo -e "Invalid option $1"
 		;;

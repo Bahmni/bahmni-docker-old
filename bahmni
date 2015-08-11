@@ -42,6 +42,9 @@ case "$1" in
 	"clean" )
 		docker-compose -f $COMPOSE rm -v --force
 		;;
+	"logs" )
+		docker logs -f $(docker ps | tr ' ' '\n' | grep "profiles_$2")
+		;;
 	* )
 		echo -e "Invalid option $1"
 		;;

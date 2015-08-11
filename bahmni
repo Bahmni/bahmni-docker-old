@@ -49,7 +49,7 @@ case "$1" in
 	"logs" )
 		docker logs -f $(get_container_name "$2")
 		;;
-	"process" )
+	"process" | "ps" )
 		docker ps
 		;;
 	"shell" )

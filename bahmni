@@ -14,6 +14,10 @@ function start_pgsql(){
 	fi
 }
 
+function get_container_name(){
+	echo $(docker ps | tr ' ' '\n' | grep "profiles_$1")
+}
+
 case "$1" in
 	"install" )
 		echo -e "Setting up for the first time.  Starting mysql ..."
@@ -43,10 +47,13 @@ case "$1" in
 		docker-compose -f $COMPOSE rm -v --force
 		;;
 	"logs" )
-		docker logs -f $(docker ps | tr ' ' '\n' | grep "profiles_$2")
+		docker logs -f $(get_container_name "$2")
 		;;
 	"process" )
 		docker ps
+		;;
+	"shell" )
+		docker exec -it $(get_container_name "$2") /bin/bash
 		;;
 	* )
 		echo -e "Invalid option $1"

@@ -43,9 +43,17 @@ function setup_mrs(){
 	cp /root/.OpenMRS/modules/openmrs-webapp-*.war /var/lib/tomcat7/webapps/openmrs.war
  	rm -f /tmp/distro.zip
  	rm -rf /tmp/distro-5.6-SNAPSHOT
+
+	$WGET $JSS_CONFIG_URL -O /tmp/jss_config.zip
+	unzip -o -q /tmp/jss_config.zip -d /tmp/bahmni_config
+	cp -rf /tmp/bahmni_config/openmrs/obscalculator /root/.OpenMRS/obscalculator
+	mkdir -p /var/www
+	unzip -o -q /tmp/jss_config.zip -d /var/www/bahmni_config
 }
 function setup_reports(){
-	$WGET $BAHMNI_REPORTS_URL -O /var/lib/tomcat7/webapps/bahmnireports.war
+	$WGET $BAHMNI_REPORTS_URL -O /tmp/bahmnireports.war
+	unzip /tmp/bahmnireports.war -d /var/lib/tomcat7/webapps/bahmnireports/
+	cp -f /tmp/reports.properties /var/lib/tomcat7/webapps/bahmnireports/WEB-INF/classes/application.properties
 }
 
 function setup_elis(){

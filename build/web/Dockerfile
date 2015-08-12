@@ -17,6 +17,8 @@ ADD setup-artifacts.sh /tmp/setup-artifacts.sh
 
 RUN chmod +x /tmp/setup-artifacts.sh
 
+ADD reports.properties /tmp/reports.properties
+
 RUN /tmp/setup-artifacts.sh web
 
 ADD openmrs-runtime.properties /root/.OpenMRS/openmrs-runtime.properties

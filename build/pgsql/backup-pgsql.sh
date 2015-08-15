@@ -1,0 +1,1 @@
+pg_dumpall -U postgres | gzip -c > /backup/pgsql_backup.sql.gz

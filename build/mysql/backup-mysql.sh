@@ -1,0 +1,1 @@
+mysqldump -uroot -ppassword --all-databases --routines | gzip > /backup/mysql_backup.sql.gz

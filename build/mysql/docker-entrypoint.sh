@@ -25,7 +25,6 @@ if [ "${1:0:1}" = '-' ]; then
 fi
 
 if [ "$1" = 'mysqld' ]; then
-	echo "Hello Bharat!!!"
 	# Get config
 	DATADIR="$("$@" --verbose --help 2>/dev/null | awk '$1 == "datadir" { print $2; exit }')"
 	SOCKET=$(get_option  mysqld socket "$DATADIR/mysql.sock")

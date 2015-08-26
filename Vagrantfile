@@ -3,7 +3,6 @@
 
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
-disk = 'bahmni-disk.vdi'
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "centos7"
@@ -12,22 +11,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :forwarded_port, guest: 8080, host: 8081
   config.vm.network :forwarded_port, guest: 443, host: 8082
   config.vm.network :forwarded_port, guest: 80, host: 8083
-  config.vm.network :forwarded_port, guest: 4243, host: 8084
   config.vm.network :private_network, ip: "192.168.33.10"
 
   config.vm.provider "virtualbox" do |v|
-    v.customize ["modifyvm", :id, "--memory", 3092, "--cpus", 2]
-    unless File.exist?(disk)
-      v.customize ['createhd', '--filename', disk, '--size', 20 * 1024]
-    end
-    v.customize ['storageattach', :id, '--storagectl', 'SATA Controller', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', disk]
+     v.customize ["modifyvm", :id, "--memory", 3092, "--cpus", 2]
   end
 
   config.vm.synced_folder "~/bahmni-code", "/root/bahmni-code", :owner => "root"
-
-  config.vm.provision "shell" do |shell|
-    shell.inline = "sudo /vagrant/scripts/mount-disk.sh"  
-  end
 
   config.vm.provision :shell, :inline => <<-EOT
     #
@@ -43,10 +33,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # docker
     #
     yum install -y docker-io
-    sed -i 's,^other_args=.*$,other_args="-g $(readlink -f /var/lib/docker) -H tcp://0.0.0.0:4243 -H unix:// --dns 8.8.8.8",g' /etc/sysconfig/docker
+    sed -i 's,^other_args=.*$,other_args="-H tcp://0.0.0.0:4243 -H unix:// --dns 8.8.8.8",g' /etc/sysconfig/docker
     chkconfig docker on
     service docker restart
   EOT
 
-  config.vm.provision :docker_compose, yml: "/vagrant/profiles/mrs.yml",project_name: "bahmni", run: "always"
+  config.vm.provision :docker_compose, yml: "/vagrant/profiles/prod.yml",project_name: "bahmni", run: "always"
 end

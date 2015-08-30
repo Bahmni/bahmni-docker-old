@@ -22,7 +22,8 @@ function setup_erp(){
 	unzip -o -q /tmp/openerp-modules.zip -d /tmp
 	chown -R openerp:openerp /tmp; chmod -R 775 /tmp; 
 	echo "Now copying files"
-	yes | cp -r /tmp/openerp-modules/* /usr/lib/pymodules/python2.7/openerp/addons
+	mkdir -p /opt/openerp/addons
+	yes | cp -r /tmp/openerp-modules/* /opt/openerp/addons
 	rm -rf /tmp/openerp-modules
 	rm -f /tmp/openerp-modules.zip
 }

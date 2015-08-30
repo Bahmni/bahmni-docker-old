@@ -13,3 +13,5 @@ ADD setup-artifacts.sh /tmp/setup-artifacts.sh
 RUN chmod +x /tmp/setup-artifacts.sh
 
 RUN /tmp/setup-artifacts.sh erp
+
+VOLUME [ "/opt/openerp/addons" ]

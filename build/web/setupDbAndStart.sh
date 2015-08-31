@@ -6,9 +6,11 @@ sed -i 's/localhost/'"$PGSQL"'/g' /var/lib/tomcat7/webapps/openelis/WEB-INF/clas
 
 sed -i 's/openerp.host=localhost/openerp.host='"$OPENERP"'/g' /var/lib/tomcat7/webapps/openerp-atomfeed-service/WEB-INF/classes/atomfeed.properties
 
-sed -i 's/localhost/'"$DOCKERHOST"'/g' /var/lib/tomcat7/webapps/openelis/WEB-INF/classes/atomfeed.properties
+sed -i 's/localhost/web/g' /var/lib/tomcat7/webapps/openelis/WEB-INF/classes/atomfeed.properties
 
-sed -i 's/localhost/'"$DOCKERHOST"'/g' /var/lib/tomcat7/webapps/openerp-atomfeed-service/WEB-INF/classes/atomfeed.properties
+sed -i 's/jdbc.url=jdbc:postgresql:\/\/localhost\/openerp/jdbc.url=jdbc:postgresql:\/\/'"$PGSQL"'\/openerp/g' /var/lib/tomcat7/webapps/openerp-atomfeed-service/WEB-INF/classes/atomfeed.properties
+
+sed -i 's/localhost/web/g' /var/lib/tomcat7/webapps/openerp-atomfeed-service/WEB-INF/classes/atomfeed.properties
 
 if [ "$NO_ELIS" == "true" ]; then
     echo "Removing openelis. The environment variable NO_ELIS is set"

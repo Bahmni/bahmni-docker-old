@@ -14,7 +14,6 @@ web:
   - MYSQL=mysql
   - PGSQL=pgsql
   - OPENERP=openerp
-  - DOCKERHOST=web
  expose:
   - "8080"
   - "8000"
@@ -37,4 +36,3 @@ openerp:
   - "8069:8069"
  environment:
   - DB_HOST=pgsql
-  - DB_USER=openerp

@@ -11,9 +11,9 @@ web:
   - "8000:8000"
  environment:
   - OPENMRS_RUNTIME_PROPERTIES_FILE=/root/.OpenMRS/openmrs-runtime.properties
-  - MYSQL=mysql
-  - PGSQL=pgsql
-  - OPENERP=openerp
+  - MYSQL=profiles_mysql_1
+  - PGSQL=profiles_pgsql_1
+  - OPENERP=profiles_openerp_1
  expose:
   - "8080"
   - "8000"

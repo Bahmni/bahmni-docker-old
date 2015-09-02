@@ -5,7 +5,7 @@ GO_USER=guest
 GO_PWD=p@ssw0rd
 BASE_URL="https://ci-bahmni.thoughtworks.com"
 BRANCH=Released
-BAHMNI_VERSION=0.74
+BAHMNI_VERSION=0.75
 ARTIFACTS_PIPELINE_VERSION="Latest"
 CONFIG_PIPELINE_VERSION="Latest"
 WGET="wget --no-check-certificate --user=$GO_USER --password=$GO_PWD --auth-no-challenge"

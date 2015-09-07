@@ -3,7 +3,7 @@ set -e
 
 if [ -z "$BAHMNI_PROFILE" ]; then
 	export BAHMNI_PROFILE=mrs
-    echo "BAHMNI_PROFILE not set, using 'mrs' as default option.  The possible values are all,mrs,mrs-elis,mrs-erp,mrs-demo,prod"
+    echo "BAHMNI_PROFILE not set, using 'mrs' as default option.  The possible values are all, mrs, mrs-elis, mrs-erp, mrs-demo, prod"
 fi
 export COMPOSE=$PWD/profiles/${BAHMNI_PROFILE}.yml
 
@@ -24,7 +24,7 @@ case "$1" in
 		docker-compose -f $COMPOSE up -d mysql
 		start_pgsql
 		echo -e "Waiting for databases to startup"
-		sleep 30
+		sleep 10
 		echo -e "Starting other containers now"
 		docker-compose -f $COMPOSE up -d --no-recreate 
 		;;
@@ -54,6 +54,13 @@ case "$1" in
 		;;
 	"shell" )
 		docker exec -it $(get_container_name "$2") /bin/bash
+		;;
+	"update" )
+		docker pull bahmni/apache;
+		docker pull bahmni/mysql;
+		docker pull bahmni/pgsql;
+		docker pull bahmni/web;
+		docker pull bahmni/erp;
 		;;
 	* )
 		echo -e "Invalid option $1"

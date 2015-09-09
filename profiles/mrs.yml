@@ -17,7 +17,7 @@ web:
   - NO_ERP=true
   - NO_ELIS=true
  volumes:
-  - ~/bahmni-code/openmrs-distro-bahmni/distro/target/distro:/root/.OpenMRS/modules
+#  - ~/bahmni-code/openmrs-distro-bahmni/distro/target/distro:/root/.OpenMRS/modules
   - ~/bahmni-code/default-config/openmrs/obscalculator:/root/.OpenMRS/obscalculator
 mysql:
  extends:

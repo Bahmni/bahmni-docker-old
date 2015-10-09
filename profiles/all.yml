@@ -3,7 +3,7 @@ apache:
     file: ../common.yml
     service: apache
  links:
-  - web   
+  - web
  volumes:
   - ~/bahmni-code/default-config:/var/www/bahmni_config
   - ~/bahmni-code/openmrs-module-bahmniapps/ui/app:/var/www/bahmniapps
@@ -16,7 +16,8 @@ web:
   - pgsql
   - openerp
  volumes:
-#  - ~/bahmni-code/openmrs-distro-bahmni/distro/target/distro:/root/.OpenMRS/modules
+  - ~/bahmni-code/openmrs-distro-bahmni/distro/target/distro:/root/.OpenMRS/modules
+  - ~/bahmni-code/default-config/:/var/www/bahmni_config
   - ~/bahmni-code/default-config/openmrs/obscalculator:/root/.OpenMRS/obscalculator
 mysql:
  extends:
@@ -32,7 +33,7 @@ pgsql:
     file: ../common.yml
     service: pgsql
  volumes:
-  - ~/bahmni-code/pgsql:/backup 
+  - ~/bahmni-code/pgsql:/backup
 openerp:
  extends:
     file: ../common.yml
@@ -40,4 +41,4 @@ openerp:
  volumes:
   - ~/bahmni-code/openerp-modules:/opt/openerp/addons
  links:
-  - pgsql  
+  - pgsql

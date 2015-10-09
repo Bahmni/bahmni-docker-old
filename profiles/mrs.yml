@@ -3,7 +3,7 @@ apache:
     file: ../common.yml
     service: apache
  links:
-  - web   
+  - web
  volumes:
   - ~/bahmni-code/default-config:/var/www/bahmni_config
   - ~/bahmni-code/openmrs-module-bahmniapps/ui/app:/var/www/bahmniapps
@@ -17,7 +17,8 @@ web:
   - NO_ERP=true
   - NO_ELIS=true
  volumes:
-#  - ~/bahmni-code/openmrs-distro-bahmni/distro/target/distro:/root/.OpenMRS/modules
+  - ~/bahmni-code/openmrs-distro-bahmni/distro/target/distro:/root/.OpenMRS/modules
+  - ~/bahmni-code/default-config/:/var/www/bahmni_config
   - ~/bahmni-code/default-config/openmrs/obscalculator:/root/.OpenMRS/obscalculator
 mysql:
  extends:

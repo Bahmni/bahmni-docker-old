@@ -6,19 +6,19 @@
 #}
 
 setup_repos(){
-    echo "[bahmni]
-    name            = Bahmni YUM Repository
-    baseurl         = https://bahmni-repo.twhosted.com/packages/bahmni/
-    enabled         = 1
-    gpgcheck        = 0" > /etc/yum.repos.d/bahmni.repo
+echo "[bahmni]
+name            = Bahmni YUM Repository
+baseurl         = https://bahmni-repo.twhosted.com/packages/bahmni/
+enabled         = 1
+gpgcheck        = 0" > /etc/yum.repos.d/bahmni.repo
 
-    echo "# Enable to use MySQL 5.6
-    [mysql56-community]
-    name=MySQL 5.6 Community Server
-    baseurl=http://repo.mysql.com/yum/mysql-5.6-community/el/6/x86_64
-    enabled=1
-    gpgcheck=0
-    gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql" > /etc/yum.repos.d/mysql56.repo
+echo "# Enable to use MySQL 5.6
+[mysql56-community]
+name=MySQL 5.6 Community Server
+baseurl=http://repo.mysql.com/yum/mysql-5.6-community/el/6/x86_64
+enabled=1
+gpgcheck=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql" > /etc/yum.repos.d/mysql56.repo
 
     yum install -y wget
     wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm

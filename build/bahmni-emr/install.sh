@@ -28,7 +28,14 @@ config_services(){
     chkconfig openmrs on
 }
 
+collect_garbage() {
+    rm mysql_backup.sql
+    rm pgsql_backup.sql
+    yum clean packages
+}
+
 restore_mysql_database
 restore_pgsql_db
 install_bahmni
 config_services
+collect_garbage

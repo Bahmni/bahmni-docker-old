@@ -63,9 +63,16 @@ install_firefox(){
     yum install -y firefox Xvfb
 }
 
+collect_garbage() {
+    rm jre-7u79-linux-x64.rpm
+    rm pgdg-centos92-9.2-7.noarch.rpm
+    yum clean packages
+}
+
 setup_repos
 install_oracle_jre
 install_mysql
 install_pgsql
 install_ruby
 install_firefox
+collect_garbage

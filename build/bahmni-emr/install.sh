@@ -28,13 +28,6 @@ config_services(){
     chkconfig openmrs on
 }
 
-install_ruby(){
-    yum install -y which tar
-    curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
-    curl -sSL https://get.rvm.io | bash -s stable --ruby=1.9.3
-}
-
-install_ruby
 restore_mysql_database
 restore_pgsql_db
 install_bahmni

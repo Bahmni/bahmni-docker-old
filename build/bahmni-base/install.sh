@@ -6,19 +6,19 @@
 #}
 
 setup_repos(){
-echo "[bahmni]
-name            = Bahmni YUM Repository
-baseurl         = https://bahmni-repo.twhosted.com/packages/bahmni/
-enabled         = 1
-gpgcheck        = 0" > /etc/yum.repos.d/bahmni.repo
+    echo "[bahmni]
+    name            = Bahmni YUM Repository
+    baseurl         = https://bahmni-repo.twhosted.com/packages/bahmni/
+    enabled         = 1
+    gpgcheck        = 0" > /etc/yum.repos.d/bahmni.repo
 
-echo "# Enable to use MySQL 5.6
-[mysql56-community]
-name=MySQL 5.6 Community Server
-baseurl=http://repo.mysql.com/yum/mysql-5.6-community/el/6/x86_64
-enabled=1
-gpgcheck=0
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql" > /etc/yum.repos.d/mysql56.repo
+    echo "# Enable to use MySQL 5.6
+    [mysql56-community]
+    name=MySQL 5.6 Community Server
+    baseurl=http://repo.mysql.com/yum/mysql-5.6-community/el/6/x86_64
+    enabled=1
+    gpgcheck=0
+    gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql" > /etc/yum.repos.d/mysql56.repo
 
     yum install -y wget
     wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
@@ -50,7 +50,22 @@ install_pgsql(){
     service postgresql-9.2 start
 }
 
+install_ruby(){
+    yum install -y which tar
+    curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
+    curl -sSL get.rvm.io | bash -s stable
+    source /etc/profile.d/rvm.sh
+    rvm install 2.0.0
+    gem install bundler
+}
+
+install_firefox(){
+    yum install -y firefox Xvfb
+}
+
 setup_repos
 install_oracle_jre
 install_mysql
 install_pgsql
+install_ruby
+install_firefox

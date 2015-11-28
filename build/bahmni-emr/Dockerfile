@@ -8,6 +8,8 @@ RUN /tmp/install.sh
 RUN yum install -y supervisor
 
 COPY supervisord.conf /etc/supervisord.conf
+COPY run-functional-tests.sh /run-functional-tests.sh
+RUN chmod +x run-functional-tests.sh
 
 EXPOSE 443
 EXPOSE 8080

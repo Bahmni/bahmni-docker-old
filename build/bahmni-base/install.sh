@@ -55,7 +55,7 @@ install_ruby(){
     curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
     curl -sSL get.rvm.io | bash -s stable
     source /etc/profile.d/rvm.sh
-    rvm install 2.0.0
+    rvm install 1.9.3
     gem install bundler
 }
 

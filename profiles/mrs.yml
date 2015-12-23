@@ -29,3 +29,5 @@ mysql:
 #  - STARTUP_SQL=/backup/mysql_backup_20150604_121406.sql
  volumes:
   - ~/bahmni-code/mysql:/backup
+  - /etc/localtime:/etc/localtime:ro
+  - /etc/timezone:/etc/timezone:ro

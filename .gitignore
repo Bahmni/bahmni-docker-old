@@ -3,3 +3,5 @@ mrs-demo/
 playground/
 Vagrant-base-centos-box
 bahmni-disk.vdi
+.idea
+*.iml
